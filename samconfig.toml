@@ -1,0 +1,11 @@
+version = 0.1
+[prod]
+[prod.deploy]
+[prod.deploy.parameters]
+stack_name = "AuthenticationService"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-fmitjiwmlb0q"
+s3_prefix = "AuthenticationService"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = ["AuthenticationService=975024409299.dkr.ecr.us-east-1.amazonaws.com/authentication_service"]

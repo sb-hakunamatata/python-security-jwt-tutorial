@@ -45,7 +45,7 @@ Outputs:
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
   AuthenticationServiceFunction:
     Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt AuthenticationServiceFunction.Arn
+    Value: !GetAtt AuthenticationService.Arn
   AuthenticationServiceIamRole:
     Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt AuthenticationServiceFunctionRole.Arn
+    Value: !GetAtt AuthenticationServiceRole.Arn
