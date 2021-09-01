@@ -68,7 +68,7 @@ Resources:
     Metadata:
       Dockerfile: Dockerfile
       DockerContext: .
-      DockerTag: 0.0.1-prod
+      DockerTag: 0.0.1-dev
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

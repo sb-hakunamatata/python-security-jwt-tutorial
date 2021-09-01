@@ -1,14 +1,17 @@
 from flask_classful import FlaskView as FlaskController, route, request
 from models import IAuthenticationModel
 from http import HTTPStatus
+from models import IUserModel
 
 
 class AuthenticationController(FlaskController):
     authModel: IAuthenticationModel = None
+    userModel: IUserModel = None
 
     @classmethod
-    def initialize(cls, authModel: IAuthenticationModel):
+    def initialize(cls, authModel: IAuthenticationModel, userModel: IUserModel):
         AuthenticationController.authModel = authModel
+        AuthenticationController.userModel = userModel
 
     @route('/auth/<user_id>/otp/generate', methods=['POST'])
     def generate_otp(self, user_id: str):
@@ -21,7 +24,7 @@ class AuthenticationController(FlaskController):
         if not self.authModel.verify_pass(user_id, otp):
             return "UnAuthorized", HTTPStatus.UNAUTHORIZED.value
         return {
-            "token": self.authModel.generate_token(user_id)
+            "token": self.authModel.generate_token(user_id, self.userModel.getUser(user_id=user_id))
         }
 
     @classmethod

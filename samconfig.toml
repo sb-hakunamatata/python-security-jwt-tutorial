@@ -9,3 +9,13 @@ region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
 image_repositories = ["AuthenticationService=975024409299.dkr.ecr.us-east-1.amazonaws.com/authentication_service"]
+[dev]
+[dev.deploy]
+[dev.deploy.parameters]
+stack_name = "AuthService-dev"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-fmitjiwmlb0q"
+s3_prefix = "AuthService-dev"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_NAMED_IAM"
+image_repositories = ["AuthenticationService=975024409299.dkr.ecr.us-east-1.amazonaws.com/authentication_service"]

@@ -11,7 +11,7 @@ class IAuthenticationModel:
     def verify_pass(self, user_id: str, otp: int):
         pass
 
-    def generate_token(self, user_id: str):
+    def generate_token(self, user_id: str, user_details: {}):
         pass
 
     def verify_token(self, token: str):
@@ -27,12 +27,13 @@ class AuthenticationModel(IAuthenticationModel):
         return self.otpModel.generate_otp(user_id)
 
     def verify_pass(self, user_id: str, otp: int):
-        return self.otpModel.get_otp(user_id) == otp
+        return self.otpModel.validate_otp(user_id, otp)
 
-    def generate_token(self, user_id: str):
+    def generate_token(self, user_id: str, details: {}):
         return jwt.encode({
             "signature": "AuthenticationSuccess",
             "user_id": user_id,
+            "details": details
         }, key=AuthenticationConfig.get_auth_secret(), algorithm=AuthenticationConfig.get_auth_algo())
 
     def verify_token(self, token: str):

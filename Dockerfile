@@ -21,6 +21,7 @@ COPY --from=builder /dependencies ./
 ADD configuration ./configuration
 ADD controllers ./controllers
 ADD models ./models
+ADD dao ./dao
 ADD config.ini ./
 ADD app.py ./
 
