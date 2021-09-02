@@ -1,4 +1,5 @@
 from .config import Config
+import os
 
 
 class AuthenticationConfig:
@@ -8,7 +9,8 @@ class AuthenticationConfig:
 
     @staticmethod
     def get_auth_secret():
-        return Config.config().get(AuthenticationConfig.AUTHENTICATION, AuthenticationConfig.AUTH_SECRET)
+        return Config.config().get(AuthenticationConfig.AUTHENTICATION, AuthenticationConfig.AUTH_SECRET,
+                                   vars=os.environ)
 
     @staticmethod
     def get_auth_algo():

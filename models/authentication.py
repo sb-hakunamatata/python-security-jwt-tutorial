@@ -24,6 +24,7 @@ class AuthenticationModel(IAuthenticationModel):
         self.otpModel = otpModel
 
     def generate_pass(self, user_id: str):
+        print(AuthenticationConfig.get_auth_secret())
         return self.otpModel.generate_otp(user_id)
 
     def verify_pass(self, user_id: str, otp: int):

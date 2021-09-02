@@ -9,6 +9,7 @@ region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_NAMED_IAM"
 image_repositories = ["AuthenticationService=975024409299.dkr.ecr.us-east-1.amazonaws.com/authentication_service"]
+parameter_overrides = "AUTHKEY=1123123kkielolqkskgokqlqksis"
 [dev]
 [dev.deploy]
 [dev.deploy.parameters]
@@ -19,3 +20,4 @@ region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_NAMED_IAM"
 image_repositories = ["AuthenticationService=975024409299.dkr.ecr.us-east-1.amazonaws.com/authentication_service"]
+parameter_overrides = "AUTHKEY=helloworlddev"

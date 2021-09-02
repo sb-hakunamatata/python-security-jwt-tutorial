@@ -5,9 +5,16 @@ Description: >
 
   Sample SAM Template for sam-lambda-image
 
+Parameters:
+  AUTHKEY:
+    Type: String
+
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
+    Environment:
+      Variables:
+        AUTHSECRET: !Ref AUTHKEY
     Timeout: 3
 
 Resources:
