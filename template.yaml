@@ -76,6 +76,15 @@ Resources:
       Dockerfile: Dockerfile
       DockerContext: .
       DockerTag: 0.0.1-prod
+  AuthenticationServiceLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: AuthenticationServiceLambdaLayer
+      Description: Lambda Layer for authentication
+      ContentUri: ./layer
+      CompatibleRuntimes:
+        - python3.8
+      RetentionPolicy: Retain
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
