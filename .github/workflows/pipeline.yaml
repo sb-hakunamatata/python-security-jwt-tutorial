@@ -52,12 +52,13 @@ jobs:
         shell: bash
         run: |
           sam deploy --stack-name $(echo ${GITHUB_REF##*/} | tr -cd '[a-zA-Z0-9-]') \
-            --capabilities CAPABILITY_IAM \
+            --capabilities CAPABILITY_NAMED_IAM \
             --region ${TESTING_REGION} \
             --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
             --image-repository ${TESTING_IMAGE_REPOSITORY} \
             --no-fail-on-empty-changeset \
-            --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
+            --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE} \
+            --parameter-overrides "AUTHKEY=1123123kkielolqkskgokqlqksis"
 
   build-and-package:
     if: github.ref == 'refs/heads/master'
@@ -125,9 +126,10 @@ jobs:
         run: |
           sam deploy --stack-name ${PROD_STACK_NAME} \
             --template packaged-prod.yaml \
-            --capabilities CAPABILITY_IAM \
+            --capabilities CAPABILITY_NAMED_IAM \
             --region ${PROD_REGION} \
             --s3-bucket ${PROD_ARTIFACTS_BUCKET} \
             --image-repository ${PROD_IMAGE_REPOSITORY} \
             --no-fail-on-empty-changeset \
-            --role-arn ${PROD_CLOUDFORMATION_EXECUTION_ROLE}
+            --role-arn ${PROD_CLOUDFORMATION_EXECUTION_ROLE} \
+            --parameter-overrides "AUTHKEY=1123123kkielolqkskgokqlqksis"
