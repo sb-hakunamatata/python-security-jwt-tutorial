@@ -1,10 +1,23 @@
+import json
+import requests
 
 
-def uppercase_decorator(function):
-    def decorator(*args, **kwargs):
-        print("args", args)
-        print("kwargs", kwargs)
-        value = function(args, kwargs)
-        return value.upper()
+def get_user_details(conn, headers):
+    return requests.get(conn + "/auth/get_user", headers=headers)
 
-    return decorator
+
+def authenticated(connectionurl):
+    def check_authenticated(func):
+        def wrapper(event, context):
+            user_details = get_user_details(connectionurl, event['headers'])
+            if user_details.status_code >= 300:
+                return {
+                    'statusCode': user_details.status_code,
+                    'body': 'Not Authorized'
+                }
+            context.user_details = json.loads(user_details.content)
+            return func(event, context)
+
+        return wrapper
+
+    return check_authenticated
