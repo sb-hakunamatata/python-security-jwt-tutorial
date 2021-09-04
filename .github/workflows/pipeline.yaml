@@ -5,6 +5,18 @@ on:
     branches:
       - 'master'
       - 'feature**'
+    paths:
+      - 'configuration/*'
+      - 'controllers/*'
+      - 'dao/*'
+      - 'models/*'
+      - 'layer/*'
+      - 'app.py'
+      - 'Dockerfile'
+      - 'template.yaml'
+      - 'config.ini'
+      - 'Pipfile'
+      - 'Pipfile.lock'
 
 env:
   PIPELINE_USER_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
