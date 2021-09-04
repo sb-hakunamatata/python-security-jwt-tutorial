@@ -62,16 +62,22 @@ Resources:
           Properties:
             Path: /auth/{user_id}/otp/generate
             Method: post
+            Auth:
+              ApiKeyRequired: true
         LoginOTP:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /auth/{user_id}/otp/{otp}/login
             Method: post
+            Auth:
+              ApiKeyRequired: true
         GetUser:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /auth/get_user
             Method: get
+            Auth:
+              ApiKeyRequired: true
     Metadata:
       Dockerfile: Dockerfile
       DockerContext: .
