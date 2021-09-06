@@ -1,7 +1,7 @@
 FROM public.ecr.aws/lambda/python:3.8 AS builder
 
 RUN pip install pipenv
-# create .venv for installing dependencies.
+# create .venv for installing dependencies..
 RUN mkdir .venv
 
 ADD Pipfile ./
